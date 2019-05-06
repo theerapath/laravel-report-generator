@@ -1,11 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<html>
 	<head>
-		<meta charset="UTF-8">
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<style>
-			body {
-			    font-family: Arial, Helvetica, sans-serif;
-			}
+			/* body {
+			    font-family: Arial, Helvetica, sans-serif, MS Sans Serif;
+			} */
+
+			@font-face {
+            font-family: 'THSaraban';
+            font-style: normal;
+            font-weight: normal;
+            src: url("{{ storage_path('fonts/THSarabun.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'THSaraban';
+            font-style: normal;
+            font-weight: bold;
+            src: url("{{ storage_path('fonts/THSarabun Bold.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'THSaraban';
+            font-style: italic;
+            font-weight: normal;
+            src: url("{{ storage_path('fonts/THSarabun Italic.ttf') }}") format('truetype');
+        }
+
+        @font-face {
+            font-family: 'THSaraban';
+            font-style: italic;
+            font-weight: bold;
+            src: url("{{ storage_path('fonts/THSarabun Bold Italic.ttf') }}") format('truetype');
+        }
+
+        body {
+            font-family: "THSaraban";
+        }
 			.wrapper {
 				margin: 0 -20px 0;
 				padding: 0 15px;
@@ -226,16 +258,16 @@
 					@if ($showTotalColumns != [] && $ctr > 1)
 						<tr class="bg-black f-white">
                             @if ($showNumColumn || $grandTotalSkip > 1)
-                                <td colspan="{{ $grandTotalSkip }}"><b>Grand Total</b></td> {{-- For Number --}}
+                                <td colspan="{{ $grandTotalSkip }}"><b>รวม</b></td> {{-- For Number --}}
                             @endif
 							<?php $dataFound = false; ?>
 							@foreach ($columns as $colName => $colData)
 								@if (array_key_exists($colName, $showTotalColumns))
 									<?php $dataFound = true; ?>
 									@if ($showTotalColumns[$colName] == 'point')
-										<td class="right"><b>{{ number_format($total[$colName], 2, '.', ',') }}</b></td>
+										<td class="left"><b>{{ number_format($total[$colName], 2, '.', ',') }}</b></td>
 									@else
-										<td class="right"><b>{{ strtoupper($showTotalColumns[$colName]) }} {{ number_format($total[$colName], 2, '.', ',') }}</b></td>
+										<td class="left"><b>{{ strtoupper($showTotalColumns[$colName]) }} {{ number_format($total[$colName], 2, '.', ',') }}</b></td>
 									@endif
 								@else
 									@if ($dataFound)
